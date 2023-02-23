@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
 
+
 const Head = () => {
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
@@ -15,12 +16,19 @@ const Head = () => {
               className='h-8 cursor-pointer' 
               alt="menu" 
               src="https://cdn2.iconfinder.com/data/icons/most-useful-icons-4/50/HAMBURGER_MENU-512.png"/>
-        
-            <img
-              className='h-8 mx-2' 
-              src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png" 
-              alt="youtube-logo"
-               />
+            
+            <a href="/">
+              <img
+                    className='h-8 mx-2' 
+                    src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png" 
+                    alt="youtube-logo"
+                    />
+            </a>
+              
+            
+              
+            
+            
          </div>
          <div className='col-span-10 text-center px-10'>
             <input 
