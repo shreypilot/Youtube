@@ -1,13 +1,35 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
-
+import { YOUTUBE_SEARCH_API } from '../utils/constant';
 
 const Head = () => {
+
+  const[searchQuery,setSearchQuery] = useState("");
+  
+
+  useEffect(()=>{
+   //API call
+   console.log(searchQuery);
+   getSearchSuggestion();
+   //make an api call after every key press
+   //but if the difference b/w 2 Api calls is <200ms
+   //decline the Api call
+   setTimeout(() => getSearchSuggestion(),200);
+  },[searchQuery]);
+
+  const getSearchSuggestion = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json);
+  };
+
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu())
   }
+
+
   return (
     <div className="grid grid-flow-col p-5 m-2 shadow-lg">
         <div className='flex col-span-1'>
@@ -23,19 +45,14 @@ const Head = () => {
                     src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png" 
                     alt="youtube-logo"
                     />
-            </a>
-              
-            
-              
-            
-            
+            </a>   
          </div>
          <div className='col-span-10 text-center px-10'>
             <input 
               className='w-1/2 border p-2 border-gray-400 rounded-l-3xl font-normal text-gray-500 px-4'
               type="text" 
-              value ="Search"
-              
+              value ={searchQuery}
+              onChange={(e)=> setSearchQuery(e.target.value)}
               />
             <button 
               className='border p-2 border-gray-400 rounded-r-3xl px-5 bg-gray-100'>
