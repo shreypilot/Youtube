@@ -1,42 +1,39 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
+import HistoryIcon from '@mui/icons-material/History';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SidebarRow from './SidebarRow';
 const Sidebar = () => {
   const isMenuOpen = useSelector(store => store.app.isMenuOpen)
   //early return pattern
   if(!isMenuOpen) return null;
   return (
-    <div className='p-5 shadow-lg w-56'>
-      <ul>
-        <Link to="/"><li>Home</li></Link>
-        <li>Shorts</li>
-        <li>Library</li>
-        <li>Your videos</li>
-      </ul>
-      <h1 className='font-bold pt-5'>Explore</h1>
-      <ul>
-        <li>Trending</li>
-        <li>Shopping</li>
-        <li>Music</li>
-        <li>Movies</li>
-      </ul>
-      <h1 className='font-bold pt-5'>More from YouTube</h1>
-      <ul>
-        <li>YouTube Premium</li>
-        <li>Creator Studio</li>
-        <li>YouTube Music</li>
-        <li>Youtube Kids</li>
-      </ul>
+    <div className="p-5 cursor-pointer w-48">
+      <Link to='/'>
+      <div className='bg-gray-200 rounded-lg font-bold w-40'>
+       <SidebarRow Icon={HomeIcon} title="Home"  />
+      </div>
+      </Link>
+      <SidebarRow Icon={WhatshotIcon} title="Trending" />
+      <SidebarRow Icon={SubscriptionsIcon} title="Subscription" />
+      <hr />
 
-      <h1 className='font-bold pt-5'>Subscription</h1>
-      <ul>
-        <li>Akshay saini</li>
-        <li>Seed It Solution</li>
-        <li>Tricky Man</li>
-        <li>Codeitup</li>
-      </ul>
-
-      
+      <SidebarRow Icon={VideoLibraryIcon} title="Library" />
+      <SidebarRow Icon={HistoryIcon} title="History" />
+      <SidebarRow Icon={OndemandVideoIcon} title="Your Videos" />
+      <SidebarRow Icon={WatchLaterIcon} title="Watch Later" />
+      <SidebarRow Icon={ThumbUpOffAltIcon} title="Like Videos" />
+      <SidebarRow Icon={KeyboardArrowDownIcon} title="Show More" />
+    
+ 
     </div>
   )
 }

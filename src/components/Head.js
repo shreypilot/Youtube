@@ -3,7 +3,10 @@ import { useDispatch , useSelector } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
 import { YOUTUBE_SEARCH_API } from '../utils/constant';
 import { cacheResults } from "../utils/searchSlice";
-
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import Avatar from '@mui/material/Avatar';
+import MicIcon from '@mui/icons-material/Mic';
 const Head = () => {
 
   const[searchQuery,setSearchQuery] = useState("");
@@ -57,7 +60,7 @@ const Head = () => {
 
 
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
+    <div className="grid grid-flow-col p-2 m-2 shadow-full space-x-52">
         <div className='flex col-span-1'>
             <img
               onClick={() => toggleMenuHandler()}
@@ -73,20 +76,20 @@ const Head = () => {
                     />
             </a>   
          </div>
-         <div className='col-span-10  px-10'>
+         <div className='col-span-10 px-10'>
           <div>
             <input 
-                className='w-1/2 border p-2 border-gray-400 rounded-l-full font-normal text-gray-500 px-5'
+                className='w-1/2 border p-2  items-center border-gray-400 rounded-l-full font-normal text-gray-500 px-5'
                 type="text" 
                 value ={searchQuery}
                 onChange={(e)=> setSearchQuery(e.target.value)}
                 onFocus={() => setShowSuggestions(true)}
                 onBlur={() => setShowSuggestions(false)}
                 />
-              <button 
-                className='border p-2 border-gray-400 rounded-r-3xl px-5 bg-gray-100'>
-                  🔍
-              </button>
+            <button className="border border-gray-400 px-5   py-2 rounded-r-full bg-gray-100">
+                🔍
+            </button>
+            <MicIcon />     
           </div>
           {showSuggestions && (
           <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
@@ -101,12 +104,12 @@ const Head = () => {
         )}
          </div>
          
-         <div className='col-span-1'>
-            <img 
-              className='h-8'
-              src="https://www.logolynx.com/images/logolynx/4b/4beebce89d681837ba2f4105ce43afac.png" 
-              alt="user" />
-         </div>
+         <div className='col-span-1 flex flex-row  justify-center items-center space-x-4'>
+              <VideoCallIcon  />
+              <NotificationsIcon  />
+              <Avatar alt="shreya kumari"
+                        src="https://avatars.githubusercontent.com/u/104058567?s=400&u=c6ae40b6369917beb011131cbbe76ee7ddfbee94&v=4" />  
+          </div>
     </div>
   )
 }
