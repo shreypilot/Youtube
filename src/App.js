@@ -9,51 +9,55 @@ import MainContainer from "./components/MainContainer";
 import Demo from "./components/Demo";
 import Demo2 from "./components/Demo2";
 
-const appRouter = createBrowserRouter([{
-  path:"/",
-  element: <Body/>,
-  children:[
-    {
-      path:"/",
-      element:<MainContainer />
-    },
-    {
-      path:"/watch",
-      element:<WatchPage />
-    },
-    {
-      path:"/demo",
-      element:<Demo />
-    },
-    {
-      path:"/demo2",
-      element:<Demo2 />
-    },
-  ]
-}])
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "/",
+        element: <MainContainer />,
+      },
+      {
+        path: "watch",
+        element: <WatchPage />,
+      },
+      {
+        path: "demo",
+        element: (
+          <>
+            <Demo />
+            <Demo2 />
+          </>
+        ),
+      },
+    ],
+  },
+]);
 
 function App() {
-  return(
+  return (
     <Provider store={store}>
-        <div>
-          <Head />
-          <RouterProvider router={appRouter} />
-          {/**
-           * 
-           * Header
-           * Bodu
-           *   -sidebar
-           *      -menuItems
-           * MainContainer
-           *  -button list
-           *  -videoContainer
-           *     -videoCard
-           */}
-        </div>
-      </Provider>
-       
-    
-   
+      <div>
+        <Head />
+        <RouterProvider router={appRouter} />
+
+        {/**
+         *
+         * Head
+         * Body
+         *  Sidebar
+         *    MenuItems
+         *  MainContainer
+         *    ButtonsList
+         *    VideoContainer
+         *      VideoCard
+         *
+         *
+         */}
+      </div>
+    </Provider>
   );
 }
+
 export default App;
