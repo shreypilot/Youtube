@@ -1,6 +1,6 @@
-import {app} from '../../firebase'
+import firebase from 'firebase/compat/app'
 
-import {auth} from '../../firebase'
+import auth from '../../firebase'
 import {
    LOAD_PROFILE,
    LOGIN_FAIL,
@@ -15,7 +15,7 @@ export const login = () => async dispatch => {
          type: LOGIN_REQUEST,
       })
 
-      const provider = new app.auth.GoogleAuthProvider()
+      const provider = new firebase.auth.GoogleAuthProvider()
       provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
 
       const res = await auth.signInWithPopup(provider)
