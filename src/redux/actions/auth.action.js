@@ -1,4 +1,5 @@
 import firebase from 'firebase/compat/app'
+import { useHistory } from 'react-router-dom'
 
 import auth from '../../firebase'
 import {
@@ -46,12 +47,18 @@ export const login = () => async dispatch => {
    }
 }
 
-export const log_out = () => async dispatch => {
-   await auth.signOut()
-   dispatch({
-      type: LOG_OUT,
-   })
-
-   sessionStorage.removeItem('ytc-access-token')
-   sessionStorage.removeItem('ytc-user')
-}
+export const log_out = () => async (dispatch) => {
+   try {
+     await auth.signOut()
+     dispatch({
+       type: LOG_OUT,
+     })
+     sessionStorage.removeItem('ytc-access-token')
+     sessionStorage.removeItem('ytc-user')
+ 
+     const history = useHistory()
+     history.push('/login')
+   } catch (error) {
+     console.log(error)
+   }
+ }
